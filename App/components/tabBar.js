@@ -9,25 +9,25 @@ import {TabBar} from '../Navigation/tabBarNavigation'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
- return {
-  navigationState: state.navReducer.tabBar,
-  }
+    return {
+        navigationState: state.navReducer.tabBar,
+    }
 }
 
 class TabBarNavigation extends React.Component {
-  render(){
-    const { dispatch, navigationState } = this.props
-    return (
-      <TabBar
-      navigation={
-          addNavigationHelpers({
-            dispatch: dispatch,
-            state: navigationState,
-          })
-        }
-      />
-    )
-  }
+    render(){
+        const { dispatch, navigationState } = this.props
+        return (
+            <TabBar
+                navigation={
+                    addNavigationHelpers({
+                        dispatch: dispatch,
+                        state: navigationState,
+                    })
+                }
+            />
+        )
+    }
 }
 
 const TabBarContainer = connect(mapStateToProps)(TabBarNavigation)

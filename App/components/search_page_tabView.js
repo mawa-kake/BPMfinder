@@ -15,31 +15,31 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 const mapStateToProps = (state) => {
- return {
-  navigationState: state.navReducer.search
-   }
+    return {
+        navigationState: state.navReducer.search
+    }
 }
 
 class SearchPageTab extends React.Component {
   static navigationOptions = {
-    showIcon: true,
-    tabBarIcon: ({tintColor }) => <Icon size={ 20 } name='home'  color={ tintColor }/>
+      showIcon: true,
+      tabBarIcon: ({tintColor }) => <Icon size={ 20 } name='search'  color={ tintColor }/>
   }
 
   render(){
-    const { navigationState, dispatch } = this.props
-    return (
-      <SearchPageNavigator
-        navigation={
-          addNavigationHelpers({
-            dispatch: dispatch,
-            state: navigationState
-          })
-        }
-      />
-    )
+      const { navigationState, dispatch } = this.props
+      return (
+          <SearchPageNavigator
+              navigation={
+                  addNavigationHelpers({
+                      dispatch: dispatch,
+                      state: navigationState
+                  })
+              }
+          />
+      )
   }
 }
 
-const SearchTabContainer = connect(mapStateToProps)(SearcPageTab)
+const SearchTabContainer = connect(mapStateToProps)(SearchPageTab)
 export default SearchTabContainer

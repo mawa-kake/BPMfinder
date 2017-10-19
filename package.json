@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^8.0.0",
+    "eslint": "^4.7.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-standard": "^3.0.1",
     "jest-expo": "~19.0.0",
     "react-native-debugger-open": "^0.3.12",
     "react-native-scripts": "1.1.0",
@@ -15,16 +22,22 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "rndebugger-open --expo"
+    "postinstall": "rndebugger-open --expo",
+    "eslint": "eslint src/**/*.js"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
+    "base-64": "^0.1.0",
+    "eslint-plugin-lodash": "^2.4.5",
     "expo": "^19.0.0",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.46.4",
+    "react-native-elements": "^0.17.0",
+    "react-native-searchbar": "^1.13.0",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",

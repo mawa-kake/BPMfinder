@@ -15,29 +15,29 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 const mapStateToProps = (state) => {
- return {
-  navigationState: state.navReducer.tapper
-   }
+    return {
+        navigationState: state.navReducer.tapper
+    }
 }
 
 class TapperPageTab extends React.Component {
   static navigationOptions = {
-    showIcon: true,
-    tabBarIcon: ({tintColor }) => <Icon size={ 20 } name='hand-pointer-o' color={ tintColor }/>
+      showIcon: true,
+      tabBarIcon: ({tintColor }) => <Icon size={ 20 } name='hand-pointer-o' color={ tintColor }/>
   }
 
   render(){
-    const { navigationState, dispatch } = this.props
-    return (
-      <TapperPageNavigator
-        navigation={
-          addNavigationHelpers({
-            dispatch: dispatch,
-            state: navigationState
-          })
-        }
-      />
-    )
+      const { navigationState, dispatch } = this.props
+      return (
+          <TapperPageNavigator
+              navigation={
+                  addNavigationHelpers({
+                      dispatch: dispatch,
+                      state: navigationState
+                  })
+              }
+          />
+      )
   }
 }
 

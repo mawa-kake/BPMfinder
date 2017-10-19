@@ -3,9 +3,11 @@ import thunk from 'redux-thunk'
 import promise from 'redux-promise'
 import logger from 'redux-logger'
 import {combineReducers} from 'redux'
-import {navReducer} from '../reducers/navigation_reducer'
-import {tapperPageReducer} from '../reducers/tapperPageReducer'
-import {savePageReducer} from '../reducers/savePageReducer'
+import navReducer from '../reducers/navigation_reducer'
+import tapperPageReducer from '../reducers/tapperPageReducer'
+import savePageReducer from '../reducers/savePageReducer'
+import historyPageReducer from '../reducers/historyPageReducer'
+import searchPageReducer from '../reducers/searchPageReducer'
 import moment from 'moment'
 
 // const store = function configureStore(initialState: any = undefined){
@@ -18,17 +20,19 @@ import moment from 'moment'
 
 const enhancer = compose(
     applyMiddleware(thunk, promise, logger)
-  )
+)
 
-  const reducer = combineReducers({
+const reducer = combineReducers({
     navReducer: navReducer,
     tapReducer: tapperPageReducer,
-    saveReducer: savePageReducer
-  })
+    saveReducer: savePageReducer,
+    searchReducer: searchPageReducer,
+    historyReducer: historyPageReducer
+})
 
-  const initialState = {avg: 0, numTaps: 0, lastTap: 0}
+const initialState = {avg: 0, numTaps: 0, lastTap: 0, queryName: null, trackData: null}
 
-  const store = createStore(reducer, initialState, enhancer)
+const store = createStore(reducer, initialState, enhancer)
 //should the lasttap be a moment?
 
 export default store

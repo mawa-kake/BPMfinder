@@ -1,19 +1,19 @@
 import { StackNavigator } from 'react-navigation'
 
 // Screens
-import {Search_page} from '../components/search_page'
-import save_page from '../components/save_page'
+import SearchPageContainer from '../components/search_page'
+import SavePageContainer from '../components/save_page'
 
 const routeConfiguration = {
-  search_page: { screen: Search_page },
-  save_page: { screen: Save_page },
+    search_page: { screen: SearchPageContainer },
+    save_page: { screen: SavePageContainer },
 }
 
 // going to disable the header for now
 const stackNavigatorConfiguration = {
-  headerMode: 'none',
-  //initialRouteName: 'home_page',
-  showIcon: true
+    headerMode: 'none',
+    //initialRouteName: 'home_page',
+    showIcon: true
 }
 
 export const SearchPageNavigator = StackNavigator(routeConfiguration,stackNavigatorConfiguration)

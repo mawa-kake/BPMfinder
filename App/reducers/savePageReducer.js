@@ -1,23 +1,31 @@
-import {combineReducers} from 'redux'
-import moment from 'moment'
 
-
-
-export const savePageReducer = (state = state = {avg: 0, numTaps: 0, lastTap: 0},action) => {
+const savePageReducer = (state = {bpm: 0, name: null, saved: false, missingName: false, navFromSearch: false},action) => {
     switch(action.type) {
-      case 'saveBPM' : {
-        return Object.assign({}, state, {
-        })
-      }
+        case 'missingName' : {
+            return Object.assign({}, state, {missingName: true})
+        }
 
+        case 'saveDone': {
+            return Object.assign({}, state, {saved: true, name: null})
+        }
 
-      case 'updateName' : {
-        return Object.assign({}, state, {
-          name: action.text
-        })
-      }
+        case 'resetModals': {
+            return Object.assign({}, state, {saved: false, missingName: false})
+        }
 
-      default:
-           {return state}
-  }
+        case 'toBeSaved' : {
+            return Object.assign({}, state, {name: action.name, bpm: action.bpm, navFromSearch: action.navFromSearch})
+        }
+
+        case 'updateName' : {
+            return Object.assign({}, state, {
+                name: action.text
+            })
+        }
+
+        default:
+        {return state}
+    }
 }
+
+export default savePageReducer

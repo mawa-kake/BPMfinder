@@ -15,29 +15,29 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 const mapStateToProps = (state) => {
- return {
-  navigationState: state.navReducer.home
-   }
+    return {
+        navigationState: state.navReducer.home
+    }
 }
 
 class HomePageTab extends React.Component {
   static navigationOptions = {
-    showIcon: true,
-    tabBarIcon: ({tintColor }) => <Icon size={ 20 } name='home'  color={ tintColor }/>
+      showIcon: true,
+      tabBarIcon: ({tintColor }) => <Icon size={ 20 } name='home'  color={ tintColor }/>
   }
 
   render(){
-    const { navigationState, dispatch } = this.props
-    return (
-      <HomePageNavigator
-        navigation={
-          addNavigationHelpers({
-            dispatch: dispatch,
-            state: navigationState
-          })
-        }
-      />
-    )
+      const { navigationState, dispatch } = this.props
+      return (
+          <HomePageNavigator
+              navigation={
+                  addNavigationHelpers({
+                      dispatch: dispatch,
+                      state: navigationState
+                  })
+              }
+          />
+      )
   }
 }
 
