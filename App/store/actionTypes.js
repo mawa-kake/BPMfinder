@@ -1,6 +1,5 @@
 import {AsyncStorage} from 'react-native'
 import _ from 'lodash'
-import {getTracks} from '../lib/spotifyFetch'
 import Api from '../lib/api'
 import {Alert} from 'react-native'
 
@@ -14,7 +13,6 @@ export const JUMP_TO_TAB = 'jumpToTab'
 export const UPDATE_NAME = 'updateName'
 export const UPDATE_QUERY = 'updateQuery'
 export const DO_QUERY = 'doQuery'
-export const TRACKS_LOADED = 'tracksLoaded'
 export const TO_BE_SAVED = 'toBeSaved'
 export const JUMP_TO_HISTORY = 'jumpToHistory'
 export const RESET_MODALS = 'resetModals'
@@ -78,8 +76,4 @@ export function nameUpdate(text) {
 
 export function updateQuery(queryName) {
     return {type: UPDATE_QUERY, queryName}
-}
-
-export function tracksLoaded(jsonData) {
-    return {type: TRACK_LOADED, jsonData}
 }
