@@ -10,14 +10,6 @@ import historyPageReducer from '../reducers/historyPageReducer'
 import searchPageReducer from '../reducers/searchPageReducer'
 import moment from 'moment'
 
-// const store = function configureStore(initialState: any = undefined){
-//   const logger = createLogger()
-//   const enhancer = compose(
-//     applyMiddleware(thunk, promise, logger)
-//   )
-//   return createStore(navReducer, initialState, enhancer)
-// }
-
 const enhancer = compose(
     applyMiddleware(thunk, promise, logger)
 )
@@ -33,6 +25,5 @@ const reducer = combineReducers({
 const initialState = {avg: 0, numTaps: 0, lastTap: 0, queryName: null, trackData: null}
 
 const store = createStore(reducer, initialState, enhancer)
-//should the lasttap be a moment?
 
 export default store

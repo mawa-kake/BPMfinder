@@ -2,7 +2,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { ScrollView, TouchableHighlight } from 'react-native'
-import HistoryListItem from './searchListItem'
+import HistoryListItem from './historyListItem'
 
 
 const HistoryList = ({tracks, navigation}) => (

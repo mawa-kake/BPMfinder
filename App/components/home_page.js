@@ -4,7 +4,8 @@ import { AsyncStorage, StyleSheet, View, Text, TouchableOpacity } from 'react-na
 import { getRecents } from "../store/actionTypes"
 import {connect} from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-// Icon
+import {Button} from 'react-native-elements'
+
 
 
 const Home_page = ({navigation, viewRecents}) => (
@@ -16,29 +17,33 @@ const Home_page = ({navigation, viewRecents}) => (
         alignItems:'center',
         justifyContent:'space-between'
     }}>
-        <Text style={styles.headerText}>Welcome to BeatFinder! </Text>
+        <Text style={styles.headerText}>BPM Finder </Text>
         <View style={styles.descriptionText} >
             <View style={styles.descriptionRowStyle}>
-                <Icon size={ 20 } name='hand-pointer-o'  color={ 'black' }/>
-                <Text>TAP TEMPO: tab to tap out a tempo</Text>
+                <Icon size={ 22 } name='hand-pointer-o'  color={ 'black' }/>
+                <Text style={styles.rowText}>TAP TEMPO: Tap this tab to tap out a tempo</Text>
             </View>
             <View style={styles.descriptionRowStyle}>
-                <Icon size={ 20 } name='search'  color={ 'black' }/>
-                <Text>SEARCH: tab to search for a specific song bpm via apple music </Text>
+                <Icon size={ 22 } name='search'  color={ 'black' }/>
+                <Text style={styles.rowText}>SEARCH: Tap this tab to search for a specific song bpm via Spotify </Text>
             </View>
-            <Text>Click the button below to view recently found bpms </Text>
+            <View style={styles.descriptionRowStyle}>
+                <Icon size={ 22 } name='history'  color={ 'black' }/>
+                <Text style={styles.rowText}>RECENTS: Tap the button below to view recently found bpms</Text>
+            </View>
+            <Text style={styles.descriptionRowStyle}> </Text>
         </View>
 
-        <TouchableOpacity
-            style={styles.viewRecentsButton}
+        <Button
+            large
             onPress={()=>{
                 viewRecents(()=>{navigation.navigate('history_page')})
-
-
-            }}>
-
-            <Text >{'View Recents'}</Text>
-        </TouchableOpacity>
+            }}
+            icon={{name: 'history', type: 'font-awesome', color: 'black'}}
+            color={'black'}
+            title='View Recents'
+            borderRadius={20}
+            backgroundColor={'lightcoral'} />
 
 
         <Text style={styles.footer}>Created by Karan Marwah       Version 1</Text>
@@ -60,22 +65,30 @@ const mapDispatchToProps = (dispatch) => {
 const styles = StyleSheet.create({
 
     headerText: {
-        fontSize: 30,
+        fontSize: 50,
         textAlign: 'center',
         padding: 30,
         fontWeight: 'bold',
-        fontStyle: 'italics'
+        fontStyle: 'italic',
+        fomtFamily: 'Arial'
     },
 
     descriptionRowStyle: {
-        flexDirection: 'column',
-        paddingLeft: 10
+        flexDirection: 'row',
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 10,
+        color: 'black'
     },
     descriptionText: {
-        fontSize:18,
+        fontSize:30,
         textAlign: 'center',
         flexDirection: 'column',
         padding: 10
+    },
+    rowText: {
+        fontSize: 17,
+        paddingRight: 5
     },
     viewRecentsButton: {
         justifyContent: 'center',

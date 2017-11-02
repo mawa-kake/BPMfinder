@@ -1,5 +1,5 @@
 
-const savePageReducer = (state = {bpm: 0, name: null, saved: false, missingName: false, navFromSearch: false},action) => {
+const savePageReducer = (state = {bpm: 0, name: null, saved: false, missingName: false},action) => {
     switch(action.type) {
         case 'missingName' : {
             return Object.assign({}, state, {missingName: true})
@@ -14,7 +14,7 @@ const savePageReducer = (state = {bpm: 0, name: null, saved: false, missingName:
         }
 
         case 'toBeSaved' : {
-            return Object.assign({}, state, {name: action.name, bpm: action.bpm, navFromSearch: action.navFromSearch})
+            return Object.assign({}, state, {name: action.name, bpm: action.bpm})
         }
 
         case 'updateName' : {

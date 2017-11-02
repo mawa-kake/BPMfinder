@@ -5,8 +5,7 @@ import SearchPageContainer from '../components/search_page'
 import SavePageContainer from '../components/save_page'
 
 const routeConfiguration = {
-    search_page: { screen: SearchPageContainer },
-    save_page: { screen: SavePageContainer },
+    search_page: { screen: SearchPageContainer }
 }
 
 // going to disable the header for now

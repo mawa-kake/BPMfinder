@@ -1,13 +1,13 @@
 'use strict'
 import React from 'react'
-import { Keyboard, View, TextInput, Text, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Keyboard, View, TextInput, Text, TouchableOpacity } from 'react-native'
 import SearchList from './searchList'
 import {connect} from 'react-redux'
-import {updateQuery, fetchTracks} from "../store/actionTypes"
+import {updateQuery, fetchTracks, LOADING} from "../store/actionTypes"
 import {SearchBar} from 'react-native-elements'
 
 
-export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName}) => (
+export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName, loading, toggleLoading}) => (
 
     <View style={{
         flex:1,
@@ -15,21 +15,22 @@ export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName}
         backgroundColor: 'white'
     }}>
         <View style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start'
+            flexDirection: 'column',
+            justifyContent: 'flexStart',
+            marginTop: 22
         }}>
 
             <SearchBar
-                style={{height: 40, width: '80%', borderColor: 'black', marginTop: 20, borderWidth: 1, borderRadius: 10}}
                 onChangeText = {(text) => onBlur(text)}
                 round
                 lightTheme
-                clearButtonMode= 'while-editing'
-                placeHolder = 'Type Song Name Here'
-                placeHolderTextColor = { 'gray' }
+                clearButtonMode = 'while-editing'
+                placeholder = 'Type Song Name Here...'
                 onSubmitEditing={ () => {
-                    onSearch(queryName)
                     Keyboard.dismiss()
+                    toggleLoading()
+                    onSearch(queryName)
+
                 }
 
                 }
@@ -37,9 +38,16 @@ export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName}
 
         </View>
 
-        <View>
-            {trackData? <SearchList tracks={trackData} navigation={navigation}/> : null}
+        <View style={{flex:1}}>
+            {trackData && !loading? <SearchList tracks={trackData} navigation={navigation}/> : null}
         </View>
+
+
+        {loading?
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', paddingBottom: 50}}>
+                <ActivityIndicator size="large" />
+            </View>: null}
+
 
     </View>
 
@@ -48,7 +56,8 @@ export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName}
 const mapStateToProps = (state, ownProps) => {
     return {
         queryName: state.searchReducer.queryName,
-        trackData: state.searchReducer.trackData
+        trackData: state.searchReducer.trackData,
+        loading: state.searchReducer.loading
     }
 }
 
@@ -59,6 +68,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onSearch: (queryName) => {
             dispatch(fetchTracks(queryName))
+        },
+        toggleLoading: () => {
+            dispatch({type: LOADING})
         }
     }
 }

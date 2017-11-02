@@ -10,37 +10,38 @@ const tapper_page = ({avg, onTap, onReset, navigation, numTaps, onConfirmSave}) 
     <View style={{
         flex:1,
         flexDirection: 'column',
-        backgroundColor:'white',
-        alignItems:'center',
-        justifyContent:'center'
+        backgroundColor:'white'
     }}>
-        <View style={{flexDirection: "row"}}>
-            <Text style={styles.text}>Average bpm: </Text>
-            <Text style={styles.text}>{(numTaps <= 1)? "First Tap" : avg}</Text>
+        <View style={{flexDirection: "row", alignItems: 'flex-start', marginTop: 22}}>
+            <TouchableOpacity
+                style={styles.resetButton}
+                onPress={ () => onReset() }>
+                <Text style={{color:'#E00000', fontSize: 15}}>{'Reset'}</Text>
+            </TouchableOpacity>
 
+            <TouchableOpacity
+                style={styles.saveButton}
+                onPress={ () => {
+                    onConfirmSave(avg)
+                    navigation.navigate('save_page')
+                }}>
+                <Text style={{color: '#009933', fontSize: 15}} >{'Save'}</Text>
+            </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-            style={styles.resetButton}
-            onPress={ () => onReset() }>
-            <Text >{'Reset'}</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 30}}>
+            <Text style={styles.avgNumberText}>{(numTaps <= 1)? "0 " : Math.round(avg)}</Text>
+            <Text style={styles.bpmLabel}>  BPM</Text>
+        </View>
 
+        <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 50}}>
+            <TouchableOpacity
+                onPress={ () => onTap() }
+                style={styles.tapButton}>
+                <Text style={styles.text} >{'Tap Me'}</Text>
+            </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-            style={styles.saveButton}
-            onPress={ () => {
-                onConfirmSave(avg)
-                navigation.navigate('save_page')
-            }}>
-            <Text >{'Save'}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-            onPress={ () => onTap() }
-            style={styles.tapButton}>
-            <Text >{'Tap me!'}</Text>
-        </TouchableOpacity>
     </View>
 
 )
@@ -49,33 +50,47 @@ const tapper_page = ({avg, onTap, onReset, navigation, numTaps, onConfirmSave}) 
 var styles = StyleSheet.create({
 
     saveButton: {
-        justifyContent: 'center',
-        height: 30,
-        padding: 20,
-        borderRadius: 20,
-        marginTop: 20,
-        backgroundColor:'#ADD8E6'
+
+        alignSelf: 'flex-end',
+        marginLeft: 'auto',
+        paddingRight: 10,
+
 
     },
     resetButton: {
-        justifyContent: 'center',
-        height: 30,
-        padding: 20,
-        borderRadius: 20,
-        marginTop: 20,
-        backgroundColor:'#E00000 '
+
+        paddingLeft: 10,
+
+
     },
     tapButton: {
         justifyContent: 'center',
-        height: 100,
+        alignItems: 'center',
+        height: 150,
+        width: 150,
         padding: 20,
-        borderRadius: 20,
-        marginTop: 20,
+        borderRadius: 75,
+        marginBottom: 20,
         backgroundColor:'lightcoral'
     },
 
+    avgNumberText: {
+        fontSize: 90,
+        textAlign: 'center',
+        flexDirection: 'column',
+        color: 'black',
+        marginLeft: 25
+    },
+
     text: {
-        fontSize:18,
+        fontSize:20,
+        textAlign: 'center',
+        flexDirection: 'column',
+        color: 'black'
+    },
+
+    bpmLabel: {
+        fontSize:15,
         textAlign: 'center',
         flexDirection: 'column',
         color: 'black'

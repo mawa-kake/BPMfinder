@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import HistoryList from './historyList'
 import {CLEAR_HISTORY} from '../store/actionTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import {Button} from 'react-native-elements'
 
 const History_page = ({navigation, tracks, hasHistory, clear}) => (
 
@@ -19,57 +20,59 @@ const History_page = ({navigation, tracks, hasHistory, clear}) => (
             transparent={false}
             visible={!hasHistory}
         >
-            <View style={{marginTop: 22}}>
-                <View>
-                    <Text>No recently saved bpms!</Text>
-
-                    <TouchableHighlight onPress={() => {
-
-                        navigation.goBack()
-                    }}>
-                        <Text>Ok</Text>
-                    </TouchableHighlight>
-
+            <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                alignItems: 'center',}}>
+                <View style={{
+                    padding: 40}}>
+                    <View style={{flexDirection: 'column'}}>
+                        <Button
+                            large
+                            onPress={()=>{
+                                navigation.goBack()
+                            }}
+                            icon={{name: 'arrow-left', type: 'font-awesome', color: 'black'}}
+                            color={'black'}
+                            title='No Recents'
+                            borderRadius={20}
+                            backgroundColor={'red'} />
+                    </View>
                 </View>
             </View>
         </Modal>
+
         <View style={{
-            flexDirection: 'column',
-            justifyContent: 'flex-start'
+            marginTop:22,
+            marginLeft: 10,
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start'
         }}>
-            <View style={{
-                padding: 20,
-                marginTop:22,
-                flexDirection: 'row',
-                justifyContent: 'flex-start'
-            }}> <TouchableOpacity
-                    onPress={()=> {navigation.goBack()}}
-                >
-                    <Icon size={ 20 } name='arrow-left'  color={ 'black' }/>
-                </TouchableOpacity>
-            </View>
-
-            <Text style={{
-                padding: 20,
-                marginTop: 22,
-                Height: 15
-            }}>Recently Found Tempos</Text>
             <TouchableOpacity
-                onPress={ ()=>{clear()}}
-                style={{
-                    padding:20,
-                    borderRadius:20,
-                    backgroundColor:'lightcoral',
-                    marginTop:20,
-                    Height: 15
-                }}>
-                <Text>{'Clear Recents'}</Text>
+                onPress={()=> {navigation.goBack()}}>
+                <Icon size={ 30 } name='arrow-left'  color={ 'black' }/>
             </TouchableOpacity>
-
         </View>
-        {tracks? <ScrollView>
-            <HistoryList tracks={tracks}/>
-        </ScrollView> : null}
+
+
+
+        <View style={{flex:1}}>
+            {tracks? <HistoryList tracks={tracks}/> : null}
+        </View>
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 30}}>
+
+            <Button
+                large
+                onPress={
+                    ()=>{clear()}
+                }
+                color={'black'}
+                title='Clear Recents'
+                borderRadius={20}
+                backgroundColor={'red'} />
+        </View>
 
 
     </View>

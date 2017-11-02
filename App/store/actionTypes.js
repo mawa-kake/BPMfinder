@@ -1,6 +1,8 @@
 import {AsyncStorage} from 'react-native'
 import _ from 'lodash'
 import {getTracks} from '../lib/spotifyFetch'
+import Api from '../lib/api'
+import {Alert} from 'react-native'
 
 //Actions
 export const CLEAR_HISTORY = 'clearHistory'
@@ -17,6 +19,7 @@ export const TO_BE_SAVED = 'toBeSaved'
 export const JUMP_TO_HISTORY = 'jumpToHistory'
 export const RESET_MODALS = 'resetModals'
 export const MISSING_NAME = 'missingName'
+export const LOADING = 'loading'
 
 export function updateAvg(time) {
     return { type: UPDATE_AVG, time }
@@ -58,15 +61,17 @@ export function attemptSave(name, bpm) {
 
 export function fetchTracks(query) {
     return (dispatch) => {
-        getTracks(query).then(
-            (data) => dispatch({type: TRACKS_LOADED, tracks: data }))
+        const queryNoSpace = query.replace(" ", "%20")
+        Api.get("https://wicked-citadel-29532.herokuapp.com/" + queryNoSpace, null, 'Accept': 'application/json').then(
+            (data) => dispatch({type: TRACKS_LOADED, tracks: data })).catch(()=>
+        {Alert.alert('No Tracks Found', 'Either Spotify found no close matches, or you have a network connectivity issue')})
+
     }
 }
 
-
-
-
-
+export function undoSave(name) {
+    AsyncStorage.removeItem(name)
+}
 export function nameUpdate(text) {
     return {type: UPDATE_NAME, text}
 }
