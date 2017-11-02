@@ -12,7 +12,7 @@ const tapper_page = ({avg, onTap, onReset, navigation, numTaps, onConfirmSave}) 
         flexDirection: 'column',
         backgroundColor:'white'
     }}>
-        <View style={{flexDirection: "row", alignItems: 'flex-start', marginTop: 22}}>
+        <View style={{flexDirection: "row", alignItems: 'flex-start', marginTop: 30}}>
             <TouchableOpacity
                 style={styles.resetButton}
                 onPress={ () => onReset() }>
@@ -66,11 +66,11 @@ var styles = StyleSheet.create({
     tapButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 150,
-        width: 150,
+        height: 180,
+        width: 180,
         padding: 20,
-        borderRadius: 75,
-        marginBottom: 20,
+        borderRadius: 90,
+        marginBottom: 10,
         backgroundColor:'lightcoral'
     },
 
@@ -83,7 +83,7 @@ var styles = StyleSheet.create({
     },
 
     text: {
-        fontSize:20,
+        fontSize:30,
         textAlign: 'center',
         flexDirection: 'column',
         color: 'black'

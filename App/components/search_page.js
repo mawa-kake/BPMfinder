@@ -17,7 +17,7 @@ export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName,
         <View style={{
             flexDirection: 'column',
             justifyContent: 'flexStart',
-            marginTop: 22
+            marginTop: 30
         }}>
 
             <SearchBar

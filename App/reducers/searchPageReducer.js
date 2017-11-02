@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux'
-import {auth, getData, shapeData, getTracks} from '../lib/spotifyFetch'
 
 
 

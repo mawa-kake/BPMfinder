@@ -13,6 +13,7 @@ export const JUMP_TO_TAB = 'jumpToTab'
 export const UPDATE_NAME = 'updateName'
 export const UPDATE_QUERY = 'updateQuery'
 export const DO_QUERY = 'doQuery'
+export const TRACKS_LOADED = 'tracksLoaded'
 export const TO_BE_SAVED = 'toBeSaved'
 export const JUMP_TO_HISTORY = 'jumpToHistory'
 export const RESET_MODALS = 'resetModals'
@@ -59,8 +60,28 @@ export function attemptSave(name, bpm) {
 
 export function fetchTracks(query) {
     return (dispatch) => {
-        const queryNoSpace = query.replace(" ", "%20")
-        Api.get("https://wicked-citadel-29532.herokuapp.com/" + queryNoSpace, null, 'Accept': 'application/json').then(
+
+        const queryNoSpecial = query.replace(" ", "%20").replace("’", "%27").replace("!","%21").replace("?","%3F").replace(":","%3A")
+        .replace(";", "%3B")
+        .replace("<","%3C")
+        .replace("=","%3D")
+        .replace(">","%3E")
+        .replace("@","%40")
+        .replace('"',"%22")
+        .replace("#","%23")
+        .replace("$","%24")
+        .replace("%","%25")
+        .replace("&","%26")
+        .replace("(","%28")
+        .replace(")","%29")
+        .replace("*","%2A")
+        .replace("+","%2B")
+        .replace(",","%2C")
+        .replace("-","%2D")
+        .replace(".","%2E")
+        .replace("/","%2F")
+
+        Api.get("https://wicked-citadel-29532.herokuapp.com/" + queryNoSpecial, null, 'Accept': 'application/json').then(
             (data) => dispatch({type: TRACKS_LOADED, tracks: data })).catch(()=>
         {Alert.alert('No Tracks Found', 'Either Spotify found no close matches, or you have a network connectivity issue')})
 

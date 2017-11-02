@@ -1,3 +1,15 @@
+React Native App to help with finding the BPM of songs via tapping out a tempo or searching Spotify's library for the song's BPM. Useful for sampling music when trying to match tempo.
+
+Hosted on Expo
+
+TO RUN:
+1) Download the Expo Client App on your smartphone of choice
+2) Go to this URL: https://exp.host/@mawa-kake/beatfinder
+3) Scan the QR Code
+4) Enjoy!
+
+
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
