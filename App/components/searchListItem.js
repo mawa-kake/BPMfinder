@@ -3,7 +3,7 @@ import React from 'react'
 import lodash from 'lodash'
 import { Text, TouchableOpacity, View, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
-import {attemptSave, undoSave} from '../store/actionTypes'
+import {attemptSave, undoSave, RESET_MODALS} from '../store/actionTypes'
 
 class SearchListitem extends React.Component {
 
@@ -89,7 +89,7 @@ class SearchListitem extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         save: (name, bpm) => {
-            dispatch(attemptSave(name, bpm))
+            dispatch(attemptSave(name, bpm, true))
 
         },
         undoSave: (name) => {

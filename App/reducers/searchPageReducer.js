@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 
 
 
-const searchPageReducer = (state = {queryName: null, trackData: null, loading: false},action) => {
+const searchPageReducer = (state = {queryName: null, trackData: null, loading: false, fetchNumber: null, error: false},action) => {
     switch(action.type) {
         case 'updateQuery' : {
             return Object.assign({}, state, {
@@ -12,7 +12,7 @@ const searchPageReducer = (state = {queryName: null, trackData: null, loading: f
 
         case 'tracksLoaded' : {
             return Object.assign({}, state, {
-                trackData: action.tracks, loading: false,
+                trackData: action.tracks, loading: false, fetching: false, fetchCount: 0
             })
         }
 
@@ -20,6 +20,26 @@ const searchPageReducer = (state = {queryName: null, trackData: null, loading: f
             return Object.assign({}, state, {
                 loading: true,
             })
+        }
+
+        case 'fetching' : {
+            return Object.assign({}, state, {
+                fetchNumber: action.id
+            })
+        }
+
+        case 'error' : {
+            return Object.assign({}, state, {
+                error: (action.id === state.fetchNumber)
+            })
+
+        }
+
+        case 'closeError' : {
+            return Object.assign({}, state, {
+                error: false
+            })
+
         }
 
         default:

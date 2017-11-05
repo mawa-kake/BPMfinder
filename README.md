@@ -4,7 +4,7 @@ Hosted on Expo
 
 TO RUN:
 1) Download the Expo Client App on your smartphone of choice
-2) Go to this URL: https://exp.host/@mawa-kake/beatfinder
+2) Go to this URL: https://exp.host/@mawa-kake/bpm-finder
 3) Scan the QR Code
 4) Enjoy!
 

@@ -1,13 +1,13 @@
 'use strict'
 import React from 'react'
-import { ActivityIndicator, Keyboard, View, TextInput, Text, TouchableOpacity } from 'react-native'
+import { Alert, ActivityIndicator, Keyboard, View, TextInput, Text, TouchableOpacity } from 'react-native'
 import SearchList from './searchList'
 import {connect} from 'react-redux'
-import {updateQuery, fetchTracks, LOADING} from "../store/actionTypes"
+import {updateQuery, fetchTracks, LOADING, CLOSEERROR} from "../store/actionTypes"
 import {SearchBar} from 'react-native-elements'
 
 
-export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName, loading, toggleLoading}) => (
+export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName, loading, toggleLoading, error, closeError}) => (
 
     <View style={{
         flex:1,
@@ -28,7 +28,6 @@ export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName,
                 placeholder = 'Type Song Name Here...'
                 onSubmitEditing={ () => {
                     Keyboard.dismiss()
-                    toggleLoading()
                     onSearch(queryName)
 
                 }
@@ -48,6 +47,8 @@ export const Search_page = ({onBlur, onSearch, trackData, navigation, queryName,
                 <ActivityIndicator size="large" />
             </View>: null}
 
+        {error? Alert.alert('No Tracks Found', 'Either Spotify found no close matches, or you have a network connectivity issue', [{text: 'OK', onPress: () => closeError()}]) : null}
+
 
     </View>
 
@@ -57,7 +58,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         queryName: state.searchReducer.queryName,
         trackData: state.searchReducer.trackData,
-        loading: state.searchReducer.loading
+        loading: state.searchReducer.loading,
+        error: state.searchReducer.error
     }
 }
 
@@ -67,10 +69,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(updateQuery(text))
         },
         onSearch: (queryName) => {
-            dispatch(fetchTracks(queryName))
+            if (queryName !== null) {
+                dispatch({type: LOADING})
+                dispatch(fetchTracks(queryName))
+            }
+
         },
-        toggleLoading: () => {
-            dispatch({type: LOADING})
+        closeError: () => {
+            dispatch({type: CLOSEERROR})
         }
     }
 }

@@ -28,10 +28,10 @@ const Styles = StyleSheet.create({
         borderBottomWidth: .5
     },
     textStyleL: {
-        fontSize: 25
+        fontSize: 15
     },
     textStyleR: {
-        fontSize: 25,
+        fontSize: 15,
         alignSelf: 'flex-end',
         marginLeft: 'auto'
 
